@@ -15,8 +15,10 @@ const NavBar = () => (
     <div className="container navbar-content">
       <div className="brand">Wildcat Connect</div>
       <ul className="nav-links">
-        <li className="nav-link">Browse</li>
+        <li className="nav-link">Home</li>
+        <li className="nav-link">All Users</li>
         <li className="nav-link">My Profile</li>
+        <li className="nav-link">About</li>
         <li className="nav-link">Log Out</li>
       </ul>
     </div>
