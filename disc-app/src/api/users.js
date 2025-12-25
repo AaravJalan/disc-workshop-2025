@@ -1,8 +1,7 @@
 const API_BASE_URL = 'https://disc-assignment-5-users-api-iyct.onrender.com';
 
 /**
- * Get all users from the API
- * @returns {Promise<Array>} Array of user objects
+ * @returns {Promise<Array>}
  */
 export const getAllUsers = async () => {
   try {
@@ -19,9 +18,8 @@ export const getAllUsers = async () => {
 };
 
 /**
- * Get a single user by ID
- * @param {number} id - The user ID
- * @returns {Promise<Object>} User object
+ * @param {number} id
+ * @returns {Promise<Object>}
  */
 export const getUserByID = async (id) => {
   try {
@@ -38,17 +36,17 @@ export const getUserByID = async (id) => {
 };
 
 /**
- * Create a new user
- * @param {Object} userData - User data object
+ * @param {Object} userData
  * @param {string} userData.firstName
  * @param {string} userData.lastName
  * @param {string} userData.email
  * @param {string} userData.bio
  * @param {string} userData.major
  * @param {string} userData.graduationYear
- * @param {File} userData.image - Profile picture file
- * @returns {Promise<Object>} Created user object
+ * @param {File} userData.image
+ * @returns {Promise<Object>}
  */
+
 export const createUser = async (userData) => {
   try {
     const formData = new FormData();
@@ -85,13 +83,10 @@ export const createUser = async (userData) => {
       try {
         const errorText = await response.text();
         console.error('Create user error response:', errorText);
-
-        // Try to parse JSON error if possible
         try {
           const errorJson = JSON.parse(errorText);
           errorMessage = errorJson.message || errorJson.error || errorMessage;
         } catch {
-          // If not JSON, use text or default message
           if (errorText && errorText.length < 500) {
             errorMessage = errorText.trim();
           } else if (response.status === 500) {
@@ -112,10 +107,9 @@ export const createUser = async (userData) => {
 };
 
 /**
- * Update an existing user
- * @param {number} id - The user ID
- * @param {Object} userData - User data object (same structure as createUser)
- * @returns {Promise<Object>} Updated user object
+ * @param {number} id
+ * @param {Object} userData
+ * @returns {Promise<Object>}
  */
 export const updateUser = async (id, userData) => {
   try {
@@ -127,11 +121,9 @@ export const updateUser = async (id, userData) => {
     formData.append('major', String(userData.major || '').trim());
     formData.append('graduationYear', String(userData.graduationYear || '').trim());
 
-    // Always append image - API requires it
     if (userData.image && userData.image instanceof File) {
       formData.append('image', userData.image);
     } else {
-      // Create a placeholder if no image provided (fallback - shouldn't happen normally)
       throw new Error('Image file is required for update. Please provide an image.');
     }
 
@@ -154,12 +146,10 @@ export const updateUser = async (id, userData) => {
         const errorText = await response.text();
         console.error('Update user error response:', errorText);
 
-        // Try to parse JSON error if possible
         try {
           const errorJson = JSON.parse(errorText);
           errorMessage = errorJson.message || errorJson.error || errorMessage;
         } catch {
-          // If not JSON, use text or default message
           if (errorText && errorText.length < 500) {
             errorMessage = errorText.trim();
           } else if (response.status === 500) {
@@ -180,8 +170,7 @@ export const updateUser = async (id, userData) => {
 };
 
 /**
- * Delete a user by ID
- * @param {number} id - The user ID
+ * @param {number} id
  * @returns {Promise<void>}
  */
 export const deleteUser = async (id) => {

@@ -126,7 +126,6 @@ function UpdateUser() {
 
       let imageFile = null;
 
-      // If new image URL provided, try to fetch it
       if (formData.imageUrl && formData.imageUrl.trim()) {
         const imageUrl = formData.imageUrl.trim();
         console.log('Fetching new image from URL:', imageUrl);
@@ -155,7 +154,6 @@ function UpdateUser() {
         }
       }
 
-      // If no new image and existing image exists, try to use existing
       if (!imageFile && existingImageUrl) {
         console.log('Attempting to use existing image from:', existingImageUrl);
         try {
@@ -182,7 +180,6 @@ function UpdateUser() {
         }
       }
 
-      // If still no image, create placeholder
       if (!imageFile) {
         console.log('Creating default placeholder image');
         imageFile = await createPlaceholderImage();
