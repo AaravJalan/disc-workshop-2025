@@ -63,7 +63,6 @@ function CreateUser() {
 
       let imageFile = null;
 
-      // Try to fetch image from URL if provided
       if (formData.imageUrl && formData.imageUrl.trim()) {
         const imageUrl = formData.imageUrl.trim();
         console.log('Attempting to fetch image from URL:', imageUrl);
@@ -92,7 +91,6 @@ function CreateUser() {
         }
       }
 
-      // If no image from URL, create a placeholder
       if (!imageFile) {
         console.log('Creating default placeholder image');
         imageFile = await createPlaceholderImage();
